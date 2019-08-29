@@ -65,7 +65,7 @@
                                                                                     </div>
                                                                                 </label>
                                                                             </div>
-                                                                            <div id="cfddns_version_status" style="padding-top:5px;margin-left:230px;margin-top:0px;float:left;"><i>当前版本：1.1.0</i>
+                                                                            <div id="cfddns_version_status" style="padding-top:5px;margin-left:230px;margin-top:0px;float:left;"><i>当前版本: 1.1.1</i>
                                                                             </div>
                                                                         </td>
                                                                     </tr>
