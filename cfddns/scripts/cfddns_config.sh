@@ -24,10 +24,10 @@ stop_cfddns(){
 case $ACTION in
 start)
 	if [ "$cfddns_enable" == "1" ];then
-		logger "[软件中心]: 启动CFDDNS！"
+		logger "[软件中心]: 启动 CFDDNS!"
 		start_cfddns
 	else
-		logger "[软件中心]: CFDDNS未设置开机启动，跳过！"
+		logger "[软件中心]: CFDDNS 未设置开机启动, 跳过!"
 	fi
 	;;
 stop)

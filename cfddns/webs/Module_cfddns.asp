@@ -43,7 +43,7 @@
                                                             <div style="float:left;" class="formfonttitle" style="padding-top: 12px">Cloudflare DDNS - 设置</div>
                                                             <div style="float:right; width:15px; height:25px;margin-top:10px"><img id="return_btn" onclick="reload_Soft_Center();" align="right" style="cursor:pointer;position:absolute;margin-left:-30px;margin-top:-25px;" title="返回软件中心" src="/images/backprev.png" onMouseOver="this.src='/images/backprevclick.png'" onMouseOut="this.src='/images/backprev.png'"></img></div>
                                                             <div style="margin-left:5px;margin-top:10px;margin-bottom:10px"><img src="/images/New_ui/export/line_export.png"></div>
-                                                            <div class="SimpleNote" id="head_illustrate"><i></i><em>Cloudflare DDNS</em>是基于 Cloudflare API 实现的个人 DDNS 工具。<a href='https://github.com/Se7enMuting/koolshare-cfddns' target='_blank'><i>&nbsp;&nbsp;<u>点击查看插件详情</u></i></a></div>
+                                                            <div class="SimpleNote" id="head_illustrate"><i></i><em>Cloudflare DDNS</em> 是基于 Cloudflare API 实现的个人 DDNS 工具. <a href='https://github.com/Love4Taylor/koolshare-cfddns' target='_blank'><i>&nbsp;&nbsp;<u>点击查看插件详情</u></i></a></div>
                                                             <table style="margin:20px 0px 0px 0px;" width="100%" border="1" align="center" cellpadding="4" cellspacing="0" bordercolor="#6b8fa3" class="FormTable">
                                                                 <thead>
                                                                     <tr>
@@ -75,26 +75,30 @@
                                                                     </tr>
                                                                     <tr id="key_tr">
                                                                         <th>API Key</th>
-                                                                        <td> <input type="text" style="width: 70%" id="cfddns_key" value="<% dbus_get_def("cfddns_key", ""); %>" class="input_ss_table"></td>
+                                                                        <td> <input type="text" style="width: 70%" id="cfddns_key" value="<% dbus_get_def("cfddns_key", "example"); %>" class="input_ss_table"></td>
                                                                     </tr>
                                                                     <tr id="email_tr">
                                                                         <th>User Email</th>
-                                                                        <td><input type="text" id="cfddns_email" value="<% dbus_get_def("cfddns_email", ""); %>" class="input_ss_table"></td>
+                                                                        <td><input type="text" id="cfddns_email" value="<% dbus_get_def("cfddns_email", "example@love4taylor.dev"); %>" class="input_ss_table"></td>
                                                                     </tr>
 																	<tr id="zone_tr">
                                                                         <th>Zone Name</th>
-                                                                        <td><input type="text" id="cfddns_zone" value="<% dbus_get_def("cfddns_zone", "XXX.com"); %>" class="input_ss_table"></td>
+                                                                        <td><input type="text" id="cfddns_zone" value="<% dbus_get_def("cfddns_zone", "love4taylor.dev"); %>" class="input_ss_table"></td>
                                                                     </tr>
+                                                                    <tr id="type_tr">
+																		<th title="A 为 IPv4, AAAA 为 IPv6">域名记录类型(?)</th>
+																		<td><input type="text" id="cfddns_type" value="<% dbus_get_def("cfddns_type", "A"); %>" class="input_ss_table"></td>
+																	</tr>                                                                    
                                                                     <tr id="domain_tr">
-																		<th title="A记录：YYY，则填写YYY.XXX.com；A记录：@，则填写XXX.com">域名A记录(?)</th>
-																		<td><input type="text" id="cfddns_domain" value="<% dbus_get_def("cfddns_domain", "YYY.XXX.com/XXX.com"); %>" class="input_ss_table"></td>
+																		<th title="@ 记录请填写裸域名, 如 love4taylor.dev 其余例如 www 填写 www.love4taylor.dev">域名 A 记录(?)</th>
+																		<td><input type="text" id="cfddns_domain" value="<% dbus_get_def("cfddns_domain", "example.love4taylor.dev"); %>" class="input_ss_table"></td>
 																	</tr>
                                                                     <tr id="curl_tr">
-                                                                        <th title="可自行修改，以获得正确的公网IP">获得IP命令(?)</th>
-                                                                        <td><textarea id="cfddns_curl" class="input_ss_table" style="width: 94%; height: 2.4em"><% dbus_get_def("cfddns_curl", "curl -s whatismyip.akamai.com"); %></textarea></td>
+                                                                        <th title="可自行修改, 以获得正确的公网 IP. IPv4 推荐 curl -s ipv4.ip.sb , IPv6 推荐 curl -s ipv6.ip.sb">获得 IP 命令(?)</th>
+                                                                        <td><textarea id="cfddns_curl" class="input_ss_table" style="width: 94%; height: 2.4em"><% dbus_get_def("cfddns_curl", "curl -s ipv4.ip.sb"); %></textarea></td>
                                                                     </tr>
                                                                     <tr id="ttl_tr">
-                                                                        <th title="TTL must be between 120 and 2147483647 seconds, or 1 for automatic">TTL(?)</th>
+                                                                        <th title="TTL 必须为 120 到 2147483647 之间的数值, 或者使用 1 代表自动">TTL(?)</th>
                                                                         <td><input id="cfddns_ttl" style="width: 4.5em" class="input_ss_table"value="<% dbus_get_def("cfddns_ttl", "1"); %>">s (1 or >=120)</td>
                                                                     </tr>
 																	<tr id="interval_tr">
@@ -129,7 +133,7 @@
                 buildswitch();
                 update_visibility();
                 var posting = false;
-            	var inputs = ['key', 'email', 'zone', 'domain', 'curl', 'ttl', 'interval'];
+            	var inputs = ['key', 'email', 'zone', 'type', 'domain', 'curl', 'ttl', 'interval'];
                 $('.button_gen').click(function () {
                     if(posting) return;
                     posting = true; // save
@@ -180,6 +184,7 @@
                     document.getElementById("key_tr").style.display = "";
                     document.getElementById("email_tr").style.display = "";
 					document.getElementById("zone_tr").style.display = "";
+                    document.getElementById("type_tr").style.display = "";
 					document.getElementById("domain_tr").style.display = "";
                     document.getElementById("curl_tr").style.display = "";
                     document.getElementById("ttl_tr").style.display = "";
@@ -190,6 +195,7 @@
                     document.getElementById("key_tr").style.display = "none";
                     document.getElementById("email_tr").style.display = "none";
 					document.getElementById("zone_tr").style.display = "none";
+                    document.getElementById("type_tr").style.display = "none";
 					document.getElementById("domain_tr").style.display = "none";
                     document.getElementById("curl_tr").style.display = "none";
                     document.getElementById("ttl_tr").style.display = "none";
