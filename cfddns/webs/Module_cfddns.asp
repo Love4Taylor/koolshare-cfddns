@@ -74,15 +74,15 @@
                                                                         <td> <% dbus_get_def("cfddns_last_act", "--"); %> </td>
                                                                     </tr>
                                                                     <tr id="key_tr">
-                                                                        <th>API Key</th>
+                                                                        <th>API 密钥</th>
                                                                         <td> <input type="text" style="width: 70%" id="cfddns_key" value="<% dbus_get_def("cfddns_key", "example"); %>" class="input_ss_table"></td>
                                                                     </tr>
                                                                     <tr id="email_tr">
-                                                                        <th>User Email</th>
+                                                                        <th>用户邮箱</th>
                                                                         <td><input type="text" id="cfddns_email" value="<% dbus_get_def("cfddns_email", "example@love4taylor.dev"); %>" class="input_ss_table"></td>
                                                                     </tr>
 																	<tr id="zone_tr">
-                                                                        <th>Zone Name</th>
+                                                                        <th>主域名</th>
                                                                         <td><input type="text" id="cfddns_zone" value="<% dbus_get_def("cfddns_zone", "love4taylor.dev"); %>" class="input_ss_table"></td>
                                                                     </tr>
                                                                     <tr id="type_tr">
@@ -90,7 +90,7 @@
 																		<td><input type="text" id="cfddns_type" value="<% dbus_get_def("cfddns_type", "A"); %>" class="input_ss_table"></td>
 																	</tr>                                                                    
                                                                     <tr id="domain_tr">
-																		<th title="@ 记录请填写裸域名, 如 love4taylor.dev 其余例如 www 填写 www.love4taylor.dev">域名 A 记录(?)</th>
+																		<th title="@ 记录请填写裸域名, 如 love4taylor.dev 其余例如 www 填写 www.love4taylor.dev">域名记录(?)</th>
 																		<td><input type="text" id="cfddns_domain" value="<% dbus_get_def("cfddns_domain", "example.love4taylor.dev"); %>" class="input_ss_table"></td>
 																	</tr>
                                                                     <tr id="curl_tr">
